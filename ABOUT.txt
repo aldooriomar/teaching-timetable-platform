@@ -1,0 +1,7 @@
+ABOUT: Omar Al-Doori (BUV) 2026
+
+Teaching Timetable Platform for Windows v3.0.0
+Copyright (c) 2026 Omar Al-Doori (BUV). All rights reserved.
+
+The platform runs locally and uses the Excel workbook in the backend folder as its live data source.
+

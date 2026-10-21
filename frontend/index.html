@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Teaching timetable calendar for programme staff.">
+  <meta name="author" content="Omar Al-Doori (BUV)">
+  <meta name="copyright" content="Copyright 2026 Omar Al-Doori (BUV)">
+  <meta name="theme-color" content="#0b2530">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Teaching Timetable</title>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">TT</div>
+      <div>
+        <p id="institutionName" class="eyebrow">School of Computing</p>
+        <h1 id="timetableName">Teaching Timetable</h1>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="machine-time" aria-live="polite">
+        <span id="liveDay">Loading date…</span>
+        <strong id="liveTime">--:--</strong>
+        <small id="liveZone"></small>
+      </div>
+      <div class="source-state" id="sourceState" title="Excel workbook connection">
+        <span class="source-dot"></span>
+        <span><strong>Excel live</strong><small id="sourceUpdated">Connecting…</small></span>
+      </div>
+      <a class="button button-quiet" href="/admin">Excel data</a>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="control-bar" aria-label="Calendar controls">
+      <div class="date-controls">
+        <button class="icon-button" id="previousPeriod" type="button" aria-label="Previous period">‹</button>
+        <button class="button button-quiet" id="todayButton" type="button">Today</button>
+        <button class="icon-button" id="nextPeriod" type="button" aria-label="Next period">›</button>
+        <div>
+          <h2 id="periodTitle">Calendar</h2>
+          <p id="periodSubtitle" class="muted"></p>
+        </div>
+      </div>
+      <div class="view-switch" role="group" aria-label="Dashboard view">
+        <button class="view-button is-active" type="button" data-view="overview">Overview</button>
+        <button class="view-button" type="button" data-view="day">Day</button>
+        <button class="view-button" type="button" data-view="week">Week</button>
+        <button class="view-button" type="button" data-view="month">Month</button>
+        <button class="view-button" type="button" data-view="staff">Staff</button>
+        <button class="view-button" type="button" data-view="modules">Modules</button>
+        <button class="view-button" type="button" data-view="issues">Issues <span id="issueBadge" class="count-badge">0</span></button>
+      </div>
+    </section>
+
+    <section class="filter-strip" aria-label="Timetable filters">
+      <label>
+        <span>Professor</span>
+        <select id="professorFilter"><option value="">All professors</option></select>
+      </label>
+      <label>
+        <span>Module</span>
+        <select id="moduleFilter"><option value="">All modules</option></select>
+      </label>
+      <label>
+        <span>Activity</span>
+        <select id="activityFilter"><option value="">All activities</option></select>
+      </label>
+      <label>
+        <span>Student group</span>
+        <select id="studentFilter"><option value="">All student groups</option></select>
+      </label>
+      <button type="button" class="button button-quiet clear-filters" id="clearFilters">Clear filters</button>
+      <div id="staffLegend" class="staff-legend" aria-label="Professor colour legend"></div>
+    </section>
+
+    <section class="kpi-grid" aria-label="Summary">
+      <article class="kpi-card">
+        <span>Sessions</span>
+        <strong id="kpiSessions">0</strong>
+        <small>in this view</small>
+      </article>
+      <article class="kpi-card">
+        <span>Teaching hours</span>
+        <strong id="kpiHours">0</strong>
+        <small>scheduled</small>
+      </article>
+      <article class="kpi-card">
+        <span>Professors</span>
+        <strong id="kpiProfessors">0</strong>
+        <small>shown</small>
+      </article>
+      <article class="kpi-card">
+        <span>Modules</span>
+        <strong id="kpiModules">0</strong>
+        <small>shown</small>
+      </article>
+      <article class="kpi-card">
+        <span>Student groups</span>
+        <strong id="kpiGroups">0</strong>
+        <small>shown</small>
+      </article>
+      <article class="kpi-card kpi-alert">
+        <span>Issues</span>
+        <strong id="kpiIssues">0</strong>
+        <small>need review</small>
+      </article>
+    </section>
+
+    <section id="calendarSurface" class="surface calendar-surface" aria-live="polite">
+      <div id="calendarContent"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <strong>ABOUT: Omar Al-Doori (BUV) 2026</strong>
+    <span>Teaching Timetable Platform v3.0.0 · Local Windows Edition</span>
+  </footer>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <aside id="detailDrawer" class="detail-drawer" aria-labelledby="drawerTitle" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">Session details</p>
+        <h2 id="drawerTitle">Session</h2>
+      </div>
+      <button type="button" id="closeDrawer" class="icon-button" aria-label="Close session details">×</button>
+    </div>
+    <div id="drawerBody" class="drawer-body"></div>
+  </aside>
+
+  <div id="loadingState" class="loading-state">
+    <div class="spinner" aria-hidden="true"></div>
+    <p>Loading timetable…</p>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

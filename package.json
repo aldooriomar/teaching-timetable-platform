@@ -1,0 +1,20 @@
+{
+  "name": "teaching-timetable",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Excel-backed local teaching timetable, workload and module journey platform for Windows.",
+  "author": "Omar Al-Doori (BUV)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check server.mjs && node --check excel-store.mjs && node --check frontend/app.js && node --check frontend/admin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "read-excel-file": "9.3.10"
+  }
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Excel timetable data source and synchronisation status.">
+  <meta name="author" content="Omar Al-Doori (BUV)">
+  <meta name="copyright" content="Copyright 2026 Omar Al-Doori (BUV)">
+  <meta name="theme-color" content="#0b2530">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/admin.css">
+  <title>Excel Timetable Data</title>
+</head>
+<body>
+  <header class="app-header admin-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">XL</div>
+      <div><p class="eyebrow">Single source of truth</p><h1>Excel Timetable Data</h1></div>
+    </div>
+    <div class="header-actions">
+      <div class="machine-time"><span id="adminDate"></span><strong id="adminClock">--:--</strong><small>PC local time</small></div>
+      <a class="button button-quiet" href="/">View dashboard</a>
+    </div>
+  </header>
+
+  <main class="data-shell">
+    <section class="source-hero">
+      <div>
+        <p class="eyebrow">Connected workbook</p>
+        <h2 id="workbookName">Teaching-Timetable-Data.xlsx</h2>
+        <p>Edit the workbook in the <strong>backend</strong> folder and save it. The dashboard detects the saved change and updates automatically.</p>
+      </div>
+      <div class="source-actions">
+        <button id="reloadWorkbook" class="button button-primary" type="button">Reload Excel now</button>
+        <a class="button data-button" href="/api/backend-workbook" download>Download workbook</a>
+      </div>
+    </section>
+
+    <section class="data-kpis" aria-label="Excel source summary">
+      <article><span>Connection</span><strong id="connectionStatus">Checking…</strong><small id="modifiedAt"></small></article>
+      <article><span>Professors</span><strong id="professorCount">0</strong><small>active staff records</small></article>
+      <article><span>Modules</span><strong id="moduleCount">0</strong><small>curriculum records</small></article>
+      <article><span>Recurring sessions</span><strong id="sessionCount">0</strong><small>Excel session rows</small></article>
+    </section>
+
+    <section class="data-grid">
+      <article class="data-panel instructions-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Workflow</p><h2>How to update the live dashboard</h2></div></div>
+        <ol class="step-list">
+          <li><span>1</span><div><strong>Open the workbook</strong><p>Go to <code>backend\Teaching-Timetable-Data.xlsx</code> in the extracted application folder.</p></div></li>
+          <li><span>2</span><div><strong>Edit the yellow cells</strong><p>Use Sessions, Professors, Modules or Settings. Keep the worksheet and column names unchanged.</p></div></li>
+          <li><span>3</span><div><strong>Save in Excel</strong><p>The application detects the saved file. Leave the browser open or return to it after saving.</p></div></li>
+          <li><span>4</span><div><strong>Review the dashboard</strong><p>The live connection updates the page after the workbook is saved. You can also select “Reload Excel now”.</p></div></li>
+        </ol>
+      </article>
+
+      <article class="data-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Term configuration</p><h2 id="academicPeriod">Academic period</h2></div></div>
+        <dl class="settings-list">
+          <div><dt>Teaching Week 1</dt><dd id="termStartDate">—</dd></div>
+          <div><dt>Teaching weeks</dt><dd id="termWeeks">—</dd></div>
+          <div><dt>High-day warning</dt><dd id="highDayHours">—</dd></div>
+          <div><dt>Browser timezone</dt><dd id="browserZone">—</dd></div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="data-panel preview-panel">
+      <div class="panel-heading preview-heading">
+        <div><p class="eyebrow">Read-only preview</p><h2>Workbook records</h2></div>
+        <div class="preview-controls">
+          <div class="data-tabs" role="group" aria-label="Data preview">
+            <button class="data-tab is-active" type="button" data-table="sessions">Sessions</button>
+            <button class="data-tab" type="button" data-table="professors">Professors</button>
+            <button class="data-tab" type="button" data-table="modules">Modules</button>
+          </div>
+          <input id="dataSearch" type="search" placeholder="Search records" aria-label="Search workbook records">
+        </div>
+      </div>
+      <div class="table-scroll"><table id="dataTable"><thead></thead><tbody></tbody></table></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <strong>ABOUT: Omar Al-Doori (BUV) 2026</strong>
+    <span>Teaching Timetable Platform v3.0.0 · Excel-backed local edition</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <div id="adminLoading" class="loading-state"><div class="spinner"></div><p>Reading Excel workbook…</p></div>
+  <script type="module" src="/admin.js"></script>
+</body>
+</html>

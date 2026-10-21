@@ -1,0 +1,28 @@
+TEACHING TIMETABLE PLATFORM v3.0.0
+ABOUT: Omar Al-Doori (BUV) 2026
+Copyright 2026 Omar Al-Doori (BUV). All rights reserved.
+
+FIRST RUN OR DAILY START
+
+1. Extract the ZIP completely.
+2. Open the extracted Teaching-Timetable-Windows folder.
+3. Double-click INSTALL-AND-START.bat.
+
+That single file checks the computer, prepares a portable Node.js runtime when
+needed without administrator rights, installs the locked dependency, validates
+the Excel workbook, runs the system tests, starts the local service and opens
+the dashboard.
+
+The first run needs internet access. Later starts normally reuse the verified
+local runtime and installed dependency.
+
+Dashboard: http://127.0.0.1:4310
+Excel control: http://127.0.0.1:4310/admin
+Live workbook: backend\Teaching-Timetable-Data.xlsx
+
+To edit data, open the workbook directly or run:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Edit-Data.ps1
+
+To stop the service, run:
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Stop.ps1
+

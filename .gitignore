@@ -1,0 +1,13 @@
+node_modules/
+.runtime/
+logs/
+*.log
+*.pid
+.env
+Thumbs.db
+.DS_Store
+
+# Excel temporary and backup files
+backend/~$*.xlsx
+backend/backups/*
+!backend/backups/.gitkeep
